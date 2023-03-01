@@ -1,0 +1,65 @@
+@local = http://localhost:3000
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2ZhNzYzNWE1Y2M3YmMyMzM2NmZmY2QiLCJiaXoiOnRydWUsImlhdCI6MTY3NzM1ODY1NH0.s1bKJ7BVq4OHruJE9Tpl5Wec6vkoLqzC02JQY6q54H8
+
+### create a new user
+POST {{local}}/user/new
+Content-Type: application/json
+
+{
+    "name":"zuk",
+    "email":"ab@a.com",
+    "password":"123456",
+    "biz":true
+}
+### login auth
+
+GET {{local}}/auth
+Content-Type: application/json
+
+{
+    "email":"a@a.com",
+    "password":"123456"
+}
+
+### find logged user 
+GET {{local}}/user/me
+x-auth-token: {{token}}
+
+
+### request all user cards
+GET {{local}}/cards/my-cards
+x-auth-token: {{token}}
+
+### post new card
+POST {{local}}/cards/new-card
+Content-Type: application/json
+x-auth-token : {{token}}
+
+{
+     "bizName": "new biz",
+    "bizDescription": "test 3",
+    "bizAddress": "some address",
+    "bizPhone": "+972547875555",
+    "bizImage": "https://cdn.pixabay.com/photo/2023/02/04/09/20/castle-7766794_960_720.jpg"
+}
+### update card
+PUT {{local}}/cards/63fc83efdabb0a9c60eb4d3a
+x-auth-token: {{token}}
+Content-Type: application/json
+
+{
+    "bizName": "new biz",
+    "bizDescription": "test 21 updated",
+    "bizAddress": "some address",
+    "bizPhone": "+972547875555"
+    
+}
+
+
+### DELETE card by id
+
+DELETE {{local}}/cards/63fe0ff47f57250f5cdd3b92
+x-auth-token: {{token}}
+
+
+
